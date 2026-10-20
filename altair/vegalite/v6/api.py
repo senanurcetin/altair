@@ -4845,12 +4845,8 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
         self, deep: bool | Iterable[Any] = True, ignore: list[str] | None = None
     ) -> Self:
         copy = super().copy(deep=deep, ignore=ignore)
-        object.__setattr__(
-            copy, "_explicit_layer_data", self._explicit_layer_data
-        )
-        object.__setattr__(
-            copy, "_original_layer_data", self._original_layer_data
-        )
+        object.__setattr__(copy, "_explicit_layer_data", self._explicit_layer_data)
+        object.__setattr__(copy, "_original_layer_data", self._original_layer_data)
         return copy
 
     def properties(self, **kwargs: Any) -> Self:
