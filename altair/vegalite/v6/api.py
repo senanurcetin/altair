@@ -4853,6 +4853,13 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
         )
         return copy
 
+    def properties(self, **kwargs: Any) -> Self:
+        copy = super().properties(**kwargs)
+        if "data" in kwargs:
+            # Explicit shared data must also apply to subsequently added layers.
+            object.__setattr__(copy, "_explicit_layer_data", True)
+        return copy
+
     def transformed_data(
         self,
         row_limit: int | None = None,
