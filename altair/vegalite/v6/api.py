@@ -4901,7 +4901,7 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
         ):
             original_data = self.data
             restored = []
-            for chart, had_data in zip(self.layer, self._original_layer_data):
+            for chart, had_data in zip(self.layer, self._original_layer_data, strict=True):
                 if had_data and chart.data is Undefined:
                     chart = chart.copy(deep=False)
                     chart.data = original_data
@@ -4913,7 +4913,7 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
         object.__setattr__(
             self,
             "_original_layer_data",
-            self._original_layer_data + (other.data is not Undefined,),
+            (*self._original_layer_data, other.data is not Undefined),
         )
         self.data, self.layer = _combine_subchart_data(self.data, self.layer)
         self.params, self.layer = _combine_subchart_params(self.params, self.layer)
