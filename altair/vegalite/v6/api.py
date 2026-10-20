@@ -4903,7 +4903,11 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
             self.data = Undefined
 
         self.layer.append(other)
-        self._original_layer_data += (other.data is not Undefined,)
+        object.__setattr__(
+            self,
+            "_original_layer_data",
+            self._original_layer_data + (other.data is not Undefined,),
+        )
         self.data, self.layer = _combine_subchart_data(self.data, self.layer)
         self.params, self.layer = _combine_subchart_params(self.params, self.layer)
         return self
