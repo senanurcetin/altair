@@ -44,3 +44,40 @@ def test_dataless_filtered_layer_does_not_filter_added_layer(
     assert "transform" not in actual
     assert actual["layer"][0]["transform"] == [{"filter": "datum.y > 10"}]
     assert "transform" not in actual["layer"][1]
+
+
+@pytest.mark.parametrize("operator", ["add", "iadd", "add_layers"])
+def test_dataless_parent_filter_does_not_hide_independent_rendered_points(operator):
+    """The Vega-Lite SVG must still contain both independently sourced points."""
+    import xml.etree.ElementTree as et
+
+    vl_convert = pytest.importorskip("vl_convert")
+    first = alt.Chart().mark_bar().encode(x="x:O", y="y:Q")
+    second = alt.Chart().mark_tick().encode(x="x:O", y="y:Q")
+    filtered = (first + second).transform_filter("datum.y > 10")
+    new_points = (
+        alt.Chart(pd.DataFrame({"x": [1, 2], "y": [1, 2]}))
+        .mark_point(color="green")
+        .encode(x="x:O", y="y:Q")
+    )
+
+    def symbols(chart):
+        svg = et.fromstring(vl_convert.vegalite_to_svg(chart.to_dict()))
+        return [
+            len(element)
+            for element in svg.iter()
+            if {"role-mark", "mark-symbol"}.issubset(
+                set(element.attrib.get("class", "").split())
+            )
+        ]
+
+    reference = symbols(alt.layer(filtered, new_points))
+    if operator == "add":
+        actual = filtered + new_points
+    elif operator == "iadd":
+        actual = filtered.copy(deep=True)
+        actual += new_points
+    else:
+        actual = filtered.add_layers(new_points)
+    assert reference == [2]
+    assert symbols(actual) == reference
