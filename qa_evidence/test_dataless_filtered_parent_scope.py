@@ -1,11 +1,14 @@
-"""Independent QA for filter scoping in Altair PR #4189.
+"""
+Independent QA for filter scoping in Altair PR #4189.
 
 The QA suite is intentionally separate from the contribution branch.
 The reference semantics are alt.layer(filtered, new_layer).
 """
-import altair as alt
+
 import pandas as pd
 import pytest
+
+import altair as alt
 
 
 @pytest.mark.parametrize("operator", ["add", "iadd", "add_layers"])
