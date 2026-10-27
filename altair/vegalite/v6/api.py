@@ -4909,9 +4909,12 @@ class LayerChart(TopLevelMixin, _EncodingMixin, core.TopLevelLayerSpec):
         # Otherwise previously hoisted data would be inherited by the new layer,
         # making '+' depend on the order of its operands.
         if (
-            self.data is not Undefined
-            and not self._explicit_layer_data
-            and (other.data is Undefined or self.transform is not Undefined)
+            (self.data is Undefined and self.transform is not Undefined)
+            or (
+                self.data is not Undefined
+                and not self._explicit_layer_data
+                and (other.data is Undefined or self.transform is not Undefined)
+            )
         ):
             if self.transform is not Undefined or len(self.layer) != len(
                 self._original_layer_data
