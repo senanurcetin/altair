@@ -757,7 +757,8 @@ chart_funcs_error_message: list[tuple[Callable[..., Any], str]] = [
                 Error 2: 'asdf' is an invalid value for `stack`. Valid values are:
 
                     - One of \['zero', 'center', 'normalize'\]
-                    - Of type {re.escape("`bool | None`")}$""",
+                    - Of type {re.escape("`bool | None`")}
+                    - Or a string matching one of the options above$""",
     ),
     (
         chart_error_example__wrong_tooltip_type_in_faceted_chart,
@@ -848,14 +849,16 @@ chart_funcs_error_message: list[tuple[Callable[..., Any], str]] = [
         rf"""'asdf' is an invalid value for `stack`. Valid values are:
 
                 - One of \['zero', 'center', 'normalize'\]
-                - Of type {re.escape("`bool | None`")}$""",
+                - Of type {re.escape("`bool | None`")}
+                - Or a string matching one of the options above$""",
     ),
     (
         chart_error_example__invalid_y_option_value_with_condition,
         rf"""'asdf' is an invalid value for `stack`. Valid values are:
 
                 - One of \['zero', 'center', 'normalize'\]
-                - Of type {re.escape("`bool | None`")}$""",
+                - Of type {re.escape("`bool | None`")}
+                - Or a string matching one of the options above$""",
     ),
     (
         chart_error_example__hconcat,
@@ -870,7 +873,8 @@ chart_funcs_error_message: list[tuple[Callable[..., Any], str]] = [
                 - One of \['yearquarter', 'yearquartermonth', 'yearmonth', 'yearmonthdate', 'yearmonthdatehours', 'yearmonthdatehoursminutes', 'yearmonthdatehoursminutesseconds', 'yearweek', 'yearweekday', 'yearweekdayhours', 'yearweekdayhoursminutes', 'yearweekdayhoursminutesseconds', 'yeardayofyear', 'quartermonth', 'monthdate', 'monthdatehours', 'monthdatehoursminutes', 'monthdatehoursminutesseconds', 'weekday', 'weekdayhours', 'weekdayhoursminutes', 'weekdayhoursminutesseconds', 'dayhours', 'dayhoursminutes', 'dayhoursminutesseconds', 'hoursminutes', 'hoursminutesseconds', 'minutesseconds', 'secondsmilliseconds'\]
                 - One of \['utcyearquarter', 'utcyearquartermonth', 'utcyearmonth', 'utcyearmonthdate', 'utcyearmonthdatehours', 'utcyearmonthdatehoursminutes', 'utcyearmonthdatehoursminutesseconds', 'utcyearweek', 'utcyearweekday', 'utcyearweekdayhours', 'utcyearweekdayhoursminutes', 'utcyearweekdayhoursminutesseconds', 'utcyeardayofyear', 'utcquartermonth', 'utcmonthdate', 'utcmonthdatehours', 'utcmonthdatehoursminutes', 'utcmonthdatehoursminutesseconds', 'utcweekday', 'utcweekdayhours', 'utcweekdayhoursminutes', 'utcweekdayhoursminutesseconds', 'utcdayhours', 'utcdayhoursminutes', 'utcdayhoursminutesseconds', 'utchoursminutes', 'utchoursminutesseconds', 'utcminutesseconds', 'utcsecondsmilliseconds'\]
                 - One of \['binnedyear', 'binnedyearquarter', 'binnedyearquartermonth', 'binnedyearmonth', 'binnedyearmonthdate', 'binnedyearmonthdatehours', 'binnedyearmonthdatehoursminutes', 'binnedyearmonthdatehoursminutesseconds', 'binnedyearweek', 'binnedyearweekday', 'binnedyearweekdayhours', 'binnedyearweekdayhoursminutes', 'binnedyearweekdayhoursminutesseconds', 'binnedyeardayofyear', 'binnedutcyear', 'binnedutcyearquarter', 'binnedutcyearquartermonth', 'binnedutcyearmonth', 'binnedutcyearmonthdate', 'binnedutcyearmonthdatehours', 'binnedutcyearmonthdatehoursminutes', 'binnedutcyearmonthdatehoursminutesseconds', 'binnedutcyearweek', 'binnedutcyearweekday', 'binnedutcyearweekdayhours', 'binnedutcyearweekdayhoursminutes', 'binnedutcyearweekdayhoursminutesseconds', 'binnedutcyeardayofyear'\]
-                - Of type {re.escape("`Mapping[str, Any]`")}$""",
+                - Of type {re.escape("`Mapping[str, Any]`")}
+                - Or a string matching one of the options above$""",
     ),
     (
         chart_error_example__invalid_sort_value,
@@ -879,7 +883,8 @@ chart_funcs_error_message: list[tuple[Callable[..., Any], str]] = [
                 - One of \['ascending', 'descending'\]
                 - One of \['x', 'y', 'color', 'fill', 'stroke', 'strokeWidth', 'size', 'shape', 'fillOpacity', 'strokeOpacity', 'opacity', 'text'\]
                 - One of \['-x', '-y', '-color', '-fill', '-stroke', '-strokeWidth', '-size', '-shape', '-fillOpacity', '-strokeOpacity', '-opacity', '-text'\]
-                - Of type {re.escape("`Sequence | Mapping[str, Any] | None`")}$""",
+                - Of type {re.escape("`Sequence | Mapping[str, Any] | None`")}
+                - Or a string matching one of the options above$""",
     ),
     (
         chart_error_example__invalid_bandposition_value,

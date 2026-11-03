@@ -896,6 +896,20 @@ See the help for `{altair_cls.__name__}` to read the full description of these p
             )
         if errs_type := errors_by_validator.get("type", None):
             bullet_points.append(self._format_type_reprs(errs_type))
+        # A failed string may satisfy the type check of an enum branch while
+        # failing its allowed values. Type errors then come only from the other
+        # branches and do not mention that strings are valid enum choices.
+        if (
+            errs_enum
+            and errs_type
+            and isinstance(errors[0].instance, str)
+            and any(
+                isinstance(value, str)
+                for enum_error in errs_enum
+                for value in enum_error.validator_value
+            )
+        ):
+            bullet_points.append("or a string matching one of the options above")
 
         # It should not matter which error is specifically used as they are all
         # about the same offending instance (i.e. invalid value), so we can just
